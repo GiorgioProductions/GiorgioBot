@@ -23,10 +23,8 @@
   },
   "nodemonConfig": {
     "ignore": [
-      "users.json",
       "variables.json",
-      "config.json",
-      "images/bionicle.json"
+      "config.json"
     ],
     "delay": "2500"
   }
