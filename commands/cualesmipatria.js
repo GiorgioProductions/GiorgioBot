@@ -13,8 +13,8 @@ module.exports = {
     furrolandia[8] = `¿ACASO LO DUDAS, TRAIDOR? FURROLANDIA ES TU PATRIA ${emojis["communism"]}`;
     furrolandia[9] = `NO HAY PATRIA COMO FURROLANDIA ${emojis["communism"]}`;
     var foto = new Array;
-    foto[1] = 'media/furrolandia/furrolandia.png';
-    foto[2] = 'media/furrolandia/revolucion furrolandesa.png';
+    foto[1] = 'https://discordapp.com/channels/300975843809820672/721830228447461406/758108892785016914';
+    foto[2] = 'https://cdn.discordapp.com/attachments/721830228447461406/758108917489598484/revolucion_furrolandesa.png';
     lafoto = randomNumber(1,10);
     if (lafoto>5) {
       lafoto = 2;

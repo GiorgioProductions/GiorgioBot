@@ -136,8 +136,8 @@ function checkText(message) {
 		message.channel.send("https://cdn.discordapp.com/attachments/721830228447461406/758036869236916245/comunista.png");
 	}
 
-	if (message.content.toString().toLowerCase()=="viva chueca") {
-		message.channel.send("https://cdn.discordapp.com/attachments/721830228447461406/758036676697391184/viva_chueca.mp4");
+	if (message.content.toString().toLowerCase().includes("viva chueca")) {
+		message.channel.send({files:["https://cdn.discordapp.com/attachments/721830228447461406/758036676697391184/viva_chueca.mp4"]});
 	}
 
 	if (message.content.toString().toUpperCase()=="Israel".toUpperCase()) {
