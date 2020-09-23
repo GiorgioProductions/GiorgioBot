@@ -8,17 +8,30 @@ const fetch = require("node-fetch");
 const config = require('./config.json');
 const prefix = config.prefix;
 
-var con = mysql.createConnection({
-	host: process.env.DB_HOST,
-	user: process.env.DB_USER,
-	password: process.env.DB_PASS,
-	database: process.env.DB_NAME
-  });
+function handleDisconnect(){
+	var con = mysql.createConnection({
+		host: process.env.DB_HOST,
+		user: process.env.DB_USER,
+		password: process.env.DB_PASS,
+		database: process.env.DB_NAME
+	  });
+	con.connect(function(err) {
+		if (err) {
+			console.log("There was a problem connecting to the database.");
+			setTimeout(handleDisconnect, 2000);
+		}
+		else {
+			console.log("Connected to the database.");
+		}
+	});
 
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected to the database.");
-});
+	con.on('error', function(err) {
+		console.log("Disconnected from the database.");
+		handleDisconnect();
+	});
+}
+
+handleDisconnect();
 
 client.on('ready', () => {
 	console.log(colors.bgWhite.black('Bot iniciado como '+client.user.tag));
