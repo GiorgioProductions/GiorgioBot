@@ -8,13 +8,14 @@ const fetch = require("node-fetch");
 const config = require('./config.json');
 const prefix = config.prefix;
 
+var con = mysql.createConnection({
+	host: process.env.DB_HOST,
+	user: process.env.DB_USER,
+	password: process.env.DB_PASS,
+	database: process.env.DB_NAME
+  });
+
 function handleDisconnect(){
-	var con = mysql.createConnection({
-		host: process.env.DB_HOST,
-		user: process.env.DB_USER,
-		password: process.env.DB_PASS,
-		database: process.env.DB_NAME
-	  });
 	con.connect(function(err) {
 		if (err) {
 			console.log("There was a problem connecting to the database.");
