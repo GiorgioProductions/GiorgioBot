@@ -15,14 +15,16 @@ var con = mysql.createConnection({
 	database: process.env.DB_NAME
   });
 
-function handleDisconnect(){
-	con.on('error', function(err) {
-		console.log("Disconnected from the database.");
-		handleDisconnect();
-	});
-}
+con.on('error', function(err) {
+	console.log("Disconnected from the database.");
+	con = mysql.createConnection({
+		host: process.env.DB_HOST,
+		user: process.env.DB_USER,
+		password: process.env.DB_PASS,
+		database: process.env.DB_NAME
+	  });
+});
 
-handleDisconnect();
 
 client.on('ready', () => {
 	console.log(colors.bgWhite.black('Bot iniciado como '+client.user.tag));
