@@ -16,16 +16,6 @@ var con = mysql.createConnection({
   });
 
 function handleDisconnect(){
-	con.connect(function(err) {
-		if (err) {
-			console.log("There was a problem connecting to the database.");
-			setTimeout(handleDisconnect, 2000);
-		}
-		else {
-			console.log("Connected to the database.");
-		}
-	});
-
 	con.on('error', function(err) {
 		console.log("Disconnected from the database.");
 		handleDisconnect();
