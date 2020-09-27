@@ -85,7 +85,6 @@ client.on('messageReactionAdd', (reaction, user) => {
 		if (reaction.message.channel.id === config.channels.furros ||
 			reaction.message.channel.id === config.channels.furritos ||
 			reaction.message.channel.id === config.channels.yuri ||
-			reaction.message.channel.id === config.channels.yaoi ||
 			reaction.message.channel.id === config.channels.clop ||
 			reaction.message.channel.id === config.channels.nsfw) {
 			reaction.message.delete();
