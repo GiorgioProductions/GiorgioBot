@@ -1,4 +1,5 @@
 const { Client, Collection, MessageEmbed, Attachment } = require('discord.js');
+const config = require('../config.json');
 module.exports = {
   name: "menu",
   alias: ["pedir"],
@@ -65,4 +66,8 @@ module.exports = {
           break;
         }
   }
+}
+
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min) ) + min;
 }
