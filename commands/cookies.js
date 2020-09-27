@@ -5,7 +5,7 @@ var cookies = variables.cookies;
 module.exports = {
   name: "cookie",
   alias: ["cookies"],
-  run: (client, message, command, args, emojis) => {
+  run: (client, message, command, args, emojis, con) => {
     message.channel.send(message.author.toString()+' Aquí tienes tu galleta :cookie:');
     cookies = cookies + 1;
     variables.cookies = cookies;

@@ -2,7 +2,7 @@ const { Client, Collection, MessageEmbed, Attachment } = require('discord.js');
 module.exports = {
   name: "menu",
   alias: ["pedir"],
-  run: (client, message, command, args, emojis) => {
+  run: (client, message, command, args, emojis, con) => {
     switch (command) {
 
           case "menu":

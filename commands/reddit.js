@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 module.exports = {
   name: "reddit",
   alias: ["yiff","clop","furry","yuri","yaoi"],
-  run: (client, message, command, args, emojis) => {
+  run: (client, message, command, args, emojis, con) => {
     var nsfw = new Array;
     nsfw = ["yiff","clop","yaoi"];
     const isnsfw = nsfw.find((c) => c.includes(command));

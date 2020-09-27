@@ -8,23 +8,6 @@ const fetch = require("node-fetch");
 const config = require('./config.json');
 const prefix = config.prefix;
 
-var con = mysql.createConnection({
-	host: process.env.DB_HOST,
-	user: process.env.DB_USER,
-	password: process.env.DB_PASS,
-	database: process.env.DB_NAME
-  });
-
-con.on('error', function(err) {
-	console.log("Disconnected from the database.");
-	con = mysql.createConnection({
-		host: process.env.DB_HOST,
-		user: process.env.DB_USER,
-		password: process.env.DB_PASS,
-		database: process.env.DB_NAME
-	  });
-});
-
 
 client.on('ready', () => {
 	console.log(colors.bgWhite.black('Bot iniciado como '+client.user.tag));
@@ -49,6 +32,14 @@ for (var jsfile of commands) {
 
 client.on('message', (message) => {
 
+	//Conectarse a la base de datos
+	var con = mysql.createConnection({
+		host: process.env.DB_HOST,
+		user: process.env.DB_USER,
+		password: process.env.DB_PASS,
+		database: process.env.DB_NAME
+	});
+
 	if (message.guild == null) {return;} //Ignorar si el mensaje es un MD
 	if (message.author.bot) {return;} //Ignorar mensaje si lo ha puesto un bot
 
@@ -60,7 +51,7 @@ client.on('message', (message) => {
 	}
 
 	//AUMENTAR NIVEL DE FURRISMO
-	aumentarNivelFurry(message);
+	aumentarNivelFurry(message, con);
 
 	//Emojis
 	var emojis= new Array;
@@ -82,6 +73,8 @@ client.on('message', (message) => {
 	}
 
 	checkText(message);
+
+	con.end(); //Desconectarse de la base de datos
 
 });
 
@@ -156,7 +149,7 @@ function checkText(message) {
 	}
 }
 
-function aumentarNivelFurry(message) {
+function aumentarNivelFurry(message, con) {
 	if (message.channel.id === config.channels.furritos ||
 		message.channel.id === config.channels.furros ||
 		message.channel.id === config.channels.admin) {
@@ -167,26 +160,35 @@ function aumentarNivelFurry(message) {
 					return;
 				}
 
+			//Buscar al usuario
 			con.query("SELECT * FROM users WHERE id='"+message.author.id+"'", function (err, result, fields) {
-				if (err) throw err;
+				//Si el usuario está registrado
 				if (result!=null && result!="") {
 					var furrylvl = result[0].furrylvl
 					furrylvl += 1;
 					var sql = "UPDATE users SET furrylvl = '"+furrylvl+"' WHERE id = '"+message.author.id+"'";
-					con.query(sql, function (err, result) {
-						if (err) throw err;
-					   console.log("Aumentado el nivel de furrismo de "+message.author.tag+" a "+furrylvl);
-				  	});
+					try {
+						con.query(sql, function (err, result) {
+							console.log("Aumentado el nivel de furrismo de "+message.author.tag+" a "+furrylvl);
+						});
+					} catch (error) {
+						console.log(colors.red("No se ha podido aumentar el nivel de furrismo de "+message.author.tag));
+					}
+				
+				//Si el usuario no está registrado
 				} else {
 					furrylvl=1;
 					var sql = "INSERT INTO users (id, furrylvl) VALUES ('"+message.author.id+"', '"+furrylvl+"')";
-					con.query(sql, function (err, result) {
-						if (err) throw err;
-					   console.log("Registrado a "+message.author.tag+" en el medidor de furrismo");
-				  	});
+					try {
+						con.query(sql, function (err, result) {
+						   console.log("Registrado a "+message.author.tag+" en el medidor de furrismo");
+						});
+					} catch (error) {
+						console.log(colors.red("No se ha podido registrar a "+message.author.tag+" en el medidor de furrismo."));
+					}
+					
 				}
 			});
-			
 	}
 }
 

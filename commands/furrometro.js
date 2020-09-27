@@ -10,16 +10,17 @@ module.exports = {
       if (err) throw err;
       if (result!=null && result!="") {
         var furrylvl = result[0].furrylvl;
-        sendFurryLvL(message, furrylvl);
+        sendFurryLvL(message, furrylvl, emojis);
       } else {
         var furrylvl=1;
-        sendFurryLvL(message, furrylvl);
+        sendFurryLvL(message, furrylvl, emojis);
       }
     });
   }
 }
 
-function sendFurryLvL(message, furrylvl) {
+function sendFurryLvL(message, furrylvl, emojis) {
+  console.log(emojis);
   furrylvl+=30;
   if (furrylvl > 95) {
     porcentajeFurro = randomNumber(95,100);
@@ -27,9 +28,9 @@ function sendFurryLvL(message, furrylvl) {
     porcentajeFurro = randomNumber(furrylvl+5,furrylvl-5);
   }
   if (porcentajeFurro > 94) {
-    message.channel.send(`Tu nivel de furro es del ${porcentajeFurro} % ${emojis["furryglassses"]}`);
+    message.channel.send(`Tu nivel de furro es del ${porcentajeFurro}% ${emojis["furryglasses"]}`);
   } else {
-    message.channel.send(`Tu nivel de furro es del ${porcentajeFurro} %`);
+    message.channel.send(`Tu nivel de furro es del ${porcentajeFurro}%`);
   }
 }
 

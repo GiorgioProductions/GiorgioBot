@@ -1,7 +1,7 @@
 module.exports = {
   name: "cualesmipatria",
   alias: ["cuálesmipatria"],
-  run: (client, message, command, args, emojis) => {
+  run: (client, message, command, args, emojis, con) => {
     var furrolandia = new Array;
     furrolandia[1] = `FURROLANDIA ES NUESTRA PATRIA ${emojis["communism"]}`;
     furrolandia[2] = `FURROLANDIA ES TU PATRIA ${emojis["communism"]}`;
