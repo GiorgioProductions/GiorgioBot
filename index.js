@@ -100,8 +100,8 @@ function likePictures(message, emojis) {
 		message.channel.id==config.channels.minecraft) {
 			if (message.attachments.size > 0) {
 				message.react("❤️");
-				message.react("🗿");
-				message.react(emojis["eminem"]);
+				message.react("💛");
+				message.react("💜");
 			}
 	}
 }
