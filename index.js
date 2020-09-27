@@ -86,6 +86,7 @@ client.on('messageReactionAdd', (reaction, user) => {
 			reaction.message.channel.id === config.channels.furritos ||
 			reaction.message.channel.id === config.channels.yuri ||
 			reaction.message.channel.id === config.channels.yaoi ||
+			reaction.message.channel.id === config.channels.clop ||
 			reaction.message.channel.id === config.channels.nsfw) {
 			reaction.message.delete();
 			console.log(colors.red("Imagen eliminada"));
@@ -95,14 +96,14 @@ client.on('messageReactionAdd', (reaction, user) => {
 
 function likePictures(message, emojis) {
 	if (message.channel.id==config.channels.dibujos ||
-			message.channel.id==config.channels.dibujosnsfw ||
-			message.channel.id==config.channels.ponytown ||
-			message.channel.id==config.channels.minecraft) {
-		if (message.attachments.size > 0) {
-			message.react("❤️");
-			message.react("🗿");
-			message.react(emojis["eminem"]);
-		}
+		message.channel.id==config.channels.dibujosnsfw ||
+		message.channel.id==config.channels.ponytown ||
+		message.channel.id==config.channels.minecraft) {
+			if (message.attachments.size > 0) {
+				message.react("❤️");
+				message.react("🗿");
+				message.react(emojis["eminem"]);
+			}
 	}
 }
 
