@@ -2,14 +2,7 @@
 Bot de Discord para el [servidor de Giorgio Productions](https://discord.gg/p7uvu27).
 
 ## Cómo usar
-Si quieres hacer un fork ten en cuenta que necesitarás los siguientes módulos:
-
-- discord.js
-- colors
-- dotenv
-- fs
-- mysql
-- node-fetch
+Si quieres hacer un fork deberás instalar las dependencias usando `npm install`.
 
 También necesitarás tener MySQL en tu servidor para poder usar la base de datos. Crea una base de datos y una tabla llamada `users`.
 
