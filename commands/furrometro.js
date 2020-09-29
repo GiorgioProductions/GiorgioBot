@@ -20,7 +20,6 @@ module.exports = {
 }
 
 function sendFurryLvL(message, furrylvl, emojis, con) {
-  console.log(emojis);
   furrylvl+=30;
   if (furrylvl > 95) {
     porcentajeFurro = randomNumber(95,100);
