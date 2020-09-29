@@ -10,16 +10,16 @@ module.exports = {
       if (err) throw err;
       if (result!=null && result!="") {
         var furrylvl = result[0].furrylvl;
-        sendFurryLvL(message, furrylvl, emojis);
+        sendFurryLvL(message, furrylvl, emojis, con);
       } else {
         var furrylvl=1;
-        sendFurryLvL(message, furrylvl, emojis);
+        sendFurryLvL(message, furrylvl, emojis, con);
       }
     });
   }
 }
 
-function sendFurryLvL(message, furrylvl, emojis) {
+function sendFurryLvL(message, furrylvl, emojis, con) {
   console.log(emojis);
   furrylvl+=30;
   if (furrylvl > 95) {
