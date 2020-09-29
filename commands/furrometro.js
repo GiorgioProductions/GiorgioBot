@@ -29,8 +29,10 @@ function sendFurryLvL(message, furrylvl, emojis) {
   }
   if (porcentajeFurro > 94) {
     message.channel.send(`Tu nivel de furro es del ${porcentajeFurro}% ${emojis["furryglasses"]}`);
+    con.end(); //Desconectarse de la base de datos
   } else {
     message.channel.send(`Tu nivel de furro es del ${porcentajeFurro}%`);
+    con.end(); //Desconectarse de la base de datos
   }
 }
 

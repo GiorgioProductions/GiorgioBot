@@ -74,8 +74,6 @@ client.on('message', (message) => {
 
 	checkText(message);
 
-	con.end(); //Desconectarse de la base de datos
-
 });
 
 client.on('messageReactionAdd', (reaction, user) => {
@@ -169,10 +167,13 @@ function aumentarNivelFurry(message, con) {
 					var sql = "UPDATE users SET furrylvl = '"+furrylvl+"' WHERE id = '"+message.author.id+"'";
 					try {
 						con.query(sql, function (err, result) {
+							if (err) throw err;
 							console.log("Aumentado el nivel de furrismo de "+message.author.tag+" a "+furrylvl);
+							con.end(); //Desconectarse de la base de datos
 						});
 					} catch (error) {
 						console.log(colors.red("No se ha podido aumentar el nivel de furrismo de "+message.author.tag));
+						con.end(); //Desconectarse de la base de datos
 					}
 				
 				//Si el usuario no está registrado
@@ -182,9 +183,11 @@ function aumentarNivelFurry(message, con) {
 					try {
 						con.query(sql, function (err, result) {
 						   console.log("Registrado a "+message.author.tag+" en el medidor de furrismo");
+						   con.end(); //Desconectarse de la base de datos
 						});
 					} catch (error) {
 						console.log(colors.red("No se ha podido registrar a "+message.author.tag+" en el medidor de furrismo."));
+						con.end(); //Desconectarse de la base de datos
 					}
 					
 				}
