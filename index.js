@@ -109,6 +109,10 @@ function checkText(message) {
 		message.channel.send('https://cdn.discordapp.com/attachments/721830228447461406/758038320088612934/slipknot.gif');
 	} else
 
+	if (message.content.toString().toLowerCase().includes("skittles")) {
+		message.channel.send({files:["https://cdn.discordapp.com/attachments/721830228447461406/777247118402125824/skittles.mp4"]});
+	} else
+
 	if (message.content.toString().toLowerCase() == 'otaku muerto') {
 		message.channel.send('abono pa mi huerto');
 	} else
@@ -175,7 +179,7 @@ function aumentarNivelFurry(message, con) {
 						console.log(colors.red("No se ha podido aumentar el nivel de furrismo de "+message.author.tag));
 						con.end(); //Desconectarse de la base de datos
 					}
-				
+
 				//Si el usuario no está registrado
 				} else {
 					furrylvl=1;
@@ -189,7 +193,7 @@ function aumentarNivelFurry(message, con) {
 						console.log(colors.red("No se ha podido registrar a "+message.author.tag+" en el medidor de furrismo."));
 						con.end(); //Desconectarse de la base de datos
 					}
-					
+
 				}
 			});
 	}
