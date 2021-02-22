@@ -22,7 +22,7 @@ module.exports = {
 function sendFurryLvL(message, furrylvl, emojis, con) {
   furrylvl+=30;
   if (furrylvl > 95) {
-    porcentajeFurro = randomNumber(95,100);
+    porcentajeFurro = randomNumber(98,101);
   } else {
     porcentajeFurro = randomNumber(furrylvl+5,furrylvl-5);
   }
