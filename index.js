@@ -159,7 +159,7 @@ function aumentarNivelFurry(message, con) {
 			//NO AUMENTAR NIVEL DE FURRISMO SI SE ESTÁ USANDO EL FURRÓMETRO
 			if (message.content.toString().toLowerCase().startsWith("!furrometro") ||
 				message.content.toString().toLowerCase().startsWith("!furrómetro")) {
-					return;
+					return con.end(); //Desconectarse de la base de datos
 				}
 
 			//Buscar al usuario
